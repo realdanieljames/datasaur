@@ -30,6 +30,21 @@ const makeSingular = function (dino) {
 }
 //--------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------//
+const truncateSpecies = function(dinosaur){
+  const newDino = makeDino(dinosaur.species, dinosaur.period, dinosaur.carnivore, true);
+
+  if (newDino.species.length > 10 ){
+    newDino.species = newDino.species.slice(0,7) + '...'; 
+  }
+  return newDino
+}
+
+
+
+
+
+//--------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------//
 
 
 const makeExtinct = function (dino) {
@@ -99,6 +114,28 @@ const isCarnivore = function (dino) {
 //--------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------//
 
+
+const makeAllExtinct = function (dinos) {
+  let extinctDinos = []
+  let trueExtinctDinos = []
+  for (let dinoInfo of dinos) {
+    extinctDinos.push(dinoInfo)
+    // console.log(dinos)
+  }
+  for (let dinoStats of extinctDinos) {
+
+    trueExtinctDinos.push(dinoStats)
+    console.log(trueExtinctDinos)
+  }
+  // console.log( trueExtinctDinos)
+  // console.log(trueExtinctDinos)
+}
+
+
+//--------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------//
+
+
 const carnivoresOnly = function (dinos) {
   return (dinos.filter(isCarnivore))
 }
@@ -135,8 +172,8 @@ const extinctOnly = function (dino) {
 const notExtinct = function (dinos) {
 
   aliveDinos = []
-  for (const dino of dinos ){
-    if (dino.extinct === false){
+  for (const dino of dinos) {
+    if (dino.extinct === false) {
       aliveDinos.push(dino)
     }
   }
@@ -148,7 +185,7 @@ const notExtinct = function (dinos) {
 //--------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------//
 
-const triassicOnly = function (dinos){
+const triassicOnly = function (dinos) {
 
   return dinos.filter(isTriassic)
 }
@@ -159,9 +196,17 @@ const triassicOnly = function (dinos){
 //--------------------------------------------------------------------------------------//
 //--------------------------------------------------------------------------------------//
 
-const notTriassic = function (dinos){
+const notTriassic = function (dinos) {
 
-  return !dinos.filter(isTriassic)
+  nonTriassicArray = []
+
+  for (dino of dinos) {
+    if (dino.period !== 'Triassic') {
+
+      nonTriassicArray.push(dino)
+    }
+  }
+  return nonTriassicArray
 }
 
 
@@ -180,13 +225,10 @@ const singularizeDinos = function (dinos) {
 
   return newDinos
 }
+//--------------------------------------------------------------------------------------//
+//--------------------------------------------------------------------------------------//
 
 
-const makeAllExtinct = function (dinos) {
-  // returns an array 
-  //an array where all dinos have been made extinct.  
-  // console.log( makeExtinct(dinos))
-}
 
 /*********************************
  * TEST SETUP CODE - DON'T TOUCH!*
